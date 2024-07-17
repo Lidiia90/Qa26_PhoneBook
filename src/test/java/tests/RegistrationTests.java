@@ -25,7 +25,7 @@ public class RegistrationTests extends TestBase {
                 .withPassword("kaTe1234$");
 
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillRegistrationForm(user);
+        app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
         Assert.assertTrue(app.getHelperUser().isLogged());
         Assert.assertTrue(app.getHelperUser().isNoContactsHereDisplayed());
@@ -37,7 +37,7 @@ public class RegistrationTests extends TestBase {
                 .withEmail("Kategmail.com")
                 .withPassword("kaTe1234$");
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillRegistrationForm(user);
+        app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
         //enabled = false делает невидимым это метод
         Assert.assertTrue(app.getHelperUser().isAlertPresent("Wrong email or password"));
@@ -49,7 +49,7 @@ public class RegistrationTests extends TestBase {
                 .withEmail("Kate@gmail.com")
                 .withPassword("kae14");
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillRegistrationForm(user);
+        app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
 
         Assert.assertTrue(app.getHelperUser().isAlertPresent("Wrong email or password"));
@@ -61,7 +61,7 @@ public class RegistrationTests extends TestBase {
                 .withEmail("kate24@gmail.com")
                 .withPassword("kaT45#kit");
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillRegistrationForm(user);
+        app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
         Assert.assertTrue(app.getHelperUser().isAlertPresent("User already exist"));
     }

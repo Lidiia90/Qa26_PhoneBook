@@ -32,7 +32,7 @@ public void fillLoginForm(String email, String password){
        // passwordInput.sendKeys(password);
 type(By.xpath("//input[last()]"), password);
 }
-    public void fillRegistrationForm(User user){
+    public void fillLoginRegistrationForm(User user){
         type(By.name("email"), user.getEmail());
         type(By.xpath("//input[last()]"), user.getPassword());
     }
@@ -59,5 +59,13 @@ public void submitLogin(){
                 ".contact-page_message__2qafk>h1")), "No Contacts here!"));
       return res;
     }
+
+    public void login(User user) {
+        openLoginRegistrationForm();
+        fillLoginRegistrationForm(user);
+        submitLogin();
+    }
+
+
 }
 
