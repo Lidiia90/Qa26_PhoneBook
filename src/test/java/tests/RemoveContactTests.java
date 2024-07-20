@@ -15,26 +15,26 @@ public class RemoveContactTests extends TestBase {
         app.getHelperContact().provideContacts();
         //app.getHelperContact().provideContacts(); //if list size<3 contacts--> add3 contacts
     }
-        @Test
-        public void removeFirstContact() {
-            HelperContact helperContact = app.getHelperContact();
-            int initialContactCount = helperContact.countOfContacts();
-            helperContact.removeFirstContact();
-            helperContact.pause(1000);
-            int updatedContactCount = helperContact.countOfContacts();
-            Assert.assertEquals(updatedContactCount, initialContactCount - 1, "The contact list size did not decrease by one after removing the first contact.");
-        }
-@Test
-    public void removeAllContacts(){
-    HelperContact helperContact = app.getHelperContact();
-    int initialContactCount = helperContact.countOfContacts();
-    for(int i = 0; i < initialContactCount; i++){
+    @Test
+    public void removeFirstContact() {
+        HelperContact helperContact = app.getHelperContact();
+        int initialContactCount = helperContact.countOfContacts();
         helperContact.removeFirstContact();
-        helperContact.pause(1000);
+        helperContact.pause(2000);
+        int updatedContactCount = helperContact.countOfContacts();
+        Assert.assertEquals(updatedContactCount, initialContactCount - 1, "The contact list size did not decrease by one after removing the first contact.");
     }
-    helperContact.pause(1000);
-app.getHelperContact().removeAllContacts();
-Assert.assertEquals(app.getHelperContact().getMessage(), "No Contacts here!");
+    @Test
+    public void removeAllContacts(){
+        HelperContact helperContact = app.getHelperContact();
+        int initialContactCount = helperContact.countOfContacts();
+        for(int i = 0; i < initialContactCount; i++){
+            helperContact.removeFirstContact();
+            helperContact.pause(2000);
+        }
+        helperContact.pause(2000);
+        app.getHelperContact().removeAllContacts();
+        Assert.assertEquals(app.getHelperContact().getMessage(), "No Contacts here!");
 //        //"No Contacts here!"
-}
+    }
 }

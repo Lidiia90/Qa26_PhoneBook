@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 public class AddNewContactTests extends TestBase {
+
     @BeforeClass
     public void preCondition(){
         if(!app.getHelperUser().isLogged()){
@@ -22,7 +23,7 @@ public class AddNewContactTests extends TestBase {
     public void addNewContactSuccessAllFields(){
         int i = new Random().nextInt(1000)+1000;
 
-       Contact contact = Contact.builder()
+        Contact contact = Contact.builder()
                 .Name("Kate"+i)
                 .LastName("Serova")
                 .Phone("12345678"+i)
@@ -38,6 +39,7 @@ public class AddNewContactTests extends TestBase {
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
         Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
     }
+
     @Test
     public void addContactSuccessReqFields(){
         int i = new Random().nextInt(1000)+1000;
@@ -48,17 +50,17 @@ public class AddNewContactTests extends TestBase {
                 .email("kate" + i + "@gmail.com")
                 .Address("Tel aviv, Israel")
                 .build();
+
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
         Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
-
     }
+
     @Test
     public void addNewContactWrongName(){
-
         Contact contact = Contact.builder()
                 .Name("")
                 .LastName("Ivanova")
@@ -67,16 +69,16 @@ public class AddNewContactTests extends TestBase {
                 .Address("Tel aviv, Israel")
                 .description("work")
                 .build();
+
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
-
     }
+
     @Test
     public void addNewContactWrongLastName(){
-
         Contact contact = Contact.builder()
                 .Name("Maria")
                 .LastName("")
@@ -85,15 +87,16 @@ public class AddNewContactTests extends TestBase {
                 .Address("Tel aviv, Israel")
                 .description("work")
                 .build();
+
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
-        Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
 
+        Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
     }
+
     @Test
     public void addNewContactWrongAddress(){
-
         Contact contact = Contact.builder()
                 .Name("Petya")
                 .LastName("Petrov")
@@ -102,15 +105,16 @@ public class AddNewContactTests extends TestBase {
                 .Address("")
                 .description("work")
                 .build();
+
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
-        Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
 
+        Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
     }
+
     @Test
     public void addNewContactWrongPhone(){
-
         Contact contact = Contact.builder()
                 .Name("Daria")
                 .LastName("Devi")
@@ -119,16 +123,17 @@ public class AddNewContactTests extends TestBase {
                 .Address("Tel aviv, Israel")
                 .description("work")
                 .build();
+
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
+
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
-        Assert.assertTrue(app.getHelperContact()
-                .isAlertPresent(" Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
+        Assert.assertTrue(app.getHelperContact().isAlertPresent(" Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
     }
+
     @Test
     public void addNewContactWrongEmail(){
-
         Contact contact = Contact.builder()
                 .Name("Lora")
                 .LastName("Gam")
@@ -137,12 +142,12 @@ public class AddNewContactTests extends TestBase {
                 .Address("Tel aviv, Israel")
                 .description("work")
                 .build();
+
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
+
         Assert.assertTrue(app.getHelperContact().isAddPageStillDisplayed());
         Assert.assertTrue(app.getHelperContact().isAlertPresent("Email not valid"));
-
     }
-    }
-
+}
