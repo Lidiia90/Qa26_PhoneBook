@@ -1,10 +1,7 @@
 package manager;
 
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -37,7 +34,7 @@ public class HelperBase {
     }
 
     public boolean isAlertPresent(String message) {
-        Alert alert = new WebDriverWait(wd, 10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(wd, 15).until(ExpectedConditions.alertIsPresent());
         System.out.println(alert.getText());
         if (alert != null && alert.getText().contains(message)) {
             System.out.println(alert.getText());

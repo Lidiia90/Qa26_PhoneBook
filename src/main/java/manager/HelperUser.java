@@ -65,7 +65,5 @@ public void submitLogin(){
         fillLoginRegistrationForm(user);
         submitLogin();
     }
-
-
 }
 
