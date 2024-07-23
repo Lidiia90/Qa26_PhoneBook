@@ -3,9 +3,7 @@ package tests;
 import models.Contact;
 import models.User;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Random;
@@ -29,7 +27,7 @@ public class AddNewContactTests extends TestBase {
                 .Phone("12345678"+i)
                 .email("kate" + i + "@gmail.com")
                 .Address("Tel aviv, Israel")
-                .description("work")
+                .description("all fields")
                 .build();
 
         app.getHelperContact().openContactForm();
@@ -53,6 +51,7 @@ public class AddNewContactTests extends TestBase {
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+        app.getHelperContact().getScreen("src/test/screenshots/screen-"+i+".png");
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
@@ -67,7 +66,7 @@ public class AddNewContactTests extends TestBase {
                 .Phone("123456789340")
                 .email("ivanov@gmail.com")
                 .Address("Tel aviv, Israel")
-                .description("work")
+                .description("wrong name")
                 .build();
 
         app.getHelperContact().openContactForm();
@@ -85,7 +84,7 @@ public class AddNewContactTests extends TestBase {
                 .Phone("123456786745")
                 .email("maria1@gmail.com")
                 .Address("Tel aviv, Israel")
-                .description("work")
+                .description("empty last name")
                 .build();
 
         app.getHelperContact().openContactForm();
@@ -103,7 +102,7 @@ public class AddNewContactTests extends TestBase {
                 .Phone("1234567867")
                 .email("petya2@gmail.com")
                 .Address("")
-                .description("work")
+                .description("wrong address")
                 .build();
 
         app.getHelperContact().openContactForm();
@@ -121,7 +120,7 @@ public class AddNewContactTests extends TestBase {
                 .Phone("")
                 .email("daria3@gmail.com")
                 .Address("Tel aviv, Israel")
-                .description("work")
+                .description("wrong phone")
                 .build();
 
         app.getHelperContact().openContactForm();
@@ -140,7 +139,7 @@ public class AddNewContactTests extends TestBase {
                 .Phone("1234567823")
                 .email("lora4gmail.com")
                 .Address("Tel aviv, Israel")
-                .description("work")
+                .description("wrong email")
                 .build();
 
         app.getHelperContact().openContactForm();
