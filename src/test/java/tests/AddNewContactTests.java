@@ -18,20 +18,22 @@ public class AddNewContactTests extends TestBase {
     }
 
     @Test
-    public void addNewContactSuccessAllFields(){
+    public void addNewContactSuccessAllFields(Contact contact){
         int i = new Random().nextInt(1000)+1000;
 
-        Contact contact = Contact.builder()
-                .Name("Kate"+i)
-                .LastName("Serova")
-                .Phone("12345678"+i)
-                .email("kate" + i + "@gmail.com")
-                .Address("Tel aviv, Israel")
-                .description("all fields")
-                .build();
+//        Contact contact = Contact.builder()
+//                .Name("Kate"+i)
+//                .LastName("Serova")
+//                .Phone("12345678"+i)
+//                .email("kate" + i + "@gmail.com")
+//                .Address("Tel aviv, Israel")
+//                .description("all fields")
+//                .build();
+        logger.info("Test with data: -->"+contact.toString());
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+        app.getHelperContact().getScreen("src/test/screenshots/screen-"+i+".png");
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
@@ -39,15 +41,16 @@ public class AddNewContactTests extends TestBase {
     }
 
     @Test
-    public void addContactSuccessReqFields(){
+    public void addContactSuccessReqFields(Contact contact){
         int i = new Random().nextInt(1000)+1000;
-        Contact contact = Contact.builder()
-                .Name("Kate"+i)
-                .LastName("Serova")
-                .Phone("12345678"+i)
-                .email("kate" + i + "@gmail.com")
-                .Address("Tel aviv, Israel")
-                .build();
+//        Contact contact = Contact.builder()
+//                .Name("Kate"+i)
+//                .LastName("Serova")
+//                .Phone("12345678"+i)
+//                .email("kate" + i + "@gmail.com")
+//                .Address("Tel aviv, Israel")
+//                .build();
+        logger.info("Test with data: -->"+contact.toString());
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
@@ -86,7 +89,7 @@ public class AddNewContactTests extends TestBase {
                 .Address("Tel aviv, Israel")
                 .description("empty last name")
                 .build();
-
+        logger.info("Test with data: -->"+contact.toString());
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
@@ -104,7 +107,7 @@ public class AddNewContactTests extends TestBase {
                 .Address("")
                 .description("wrong address")
                 .build();
-
+        logger.info("Test with data: -->"+contact.toString());
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
@@ -113,16 +116,16 @@ public class AddNewContactTests extends TestBase {
     }
 
     @Test
-    public void addNewContactWrongPhone(){
-        Contact contact = Contact.builder()
-                .Name("Daria")
-                .LastName("Devi")
-                .Phone("")
-                .email("daria3@gmail.com")
-                .Address("Tel aviv, Israel")
-                .description("wrong phone")
-                .build();
-
+    public void addNewContactWrongPhone(Contact contact){
+//        Contact contact = Contact.builder()
+//                .Name("Daria")
+//                .LastName("Devi")
+//                .Phone("")
+//                .email("daria3@gmail.com")
+//                .Address("Tel aviv, Israel")
+//                .description("wrong phone")
+//                .build();
+        logger.info("Test with data: -->"+contact.toString());
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
@@ -141,7 +144,7 @@ public class AddNewContactTests extends TestBase {
                 .Address("Tel aviv, Israel")
                 .description("wrong email")
                 .build();
-
+        logger.info("Test with data: -->"+contact.toString());
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();

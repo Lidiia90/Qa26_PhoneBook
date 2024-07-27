@@ -63,10 +63,6 @@ public class HelperContact extends HelperBase {
         }
     }
 
-    public int countOfContacts() {
-        return wd.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
-    }
-
     public void addOneContact() {
         int i = new Random().nextInt(1000) + 1000;
         Contact contact = Contact.builder()
@@ -82,13 +78,14 @@ public class HelperContact extends HelperBase {
         saveContact();
     }
     public void removeAllContacts() {
-        while (countOfContacts() != 0) {
+        while (countOfContacts()!= 0) {
             removeContact();
         }
     }
     private void removeContact() {
         click(By.cssSelector(".contact-item_card__2SOIM"));
         click(By.xpath("//button[text()='Remove']"));
+        pause(1000);
     }
 
     public String getMessage() {
@@ -102,6 +99,18 @@ public class HelperContact extends HelperBase {
             System.out.println("No contact items found.");
         }
         click(By.xpath("//button[text()='Remove']"));
+    }
+
+    public int removeOneContact() {
+        int before = countOfContacts();
+        logger.info("Number of Contacts before remove is --->" + before);
+        removeContact();
+        int after = countOfContacts();
+        logger.info("Number of Contacts before remove is --->" + after);
+        return before-after;
+    }
+    public int countOfContacts() {
+        return wd.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
     }
 }
 

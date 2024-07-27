@@ -19,14 +19,16 @@ public class RegistrationTests extends TestBase {
     @Test
     public void registrationSuccess() {
         int a = (int) ((System.currentTimeMillis() / 1000) % 3600);
-
         User user = new User()
                 .withEmail("Kate" + a + "@gmail.com")
                 .withPassword("kaTe1234$");
-
+        logger.info("Test with data: -->"+user.toString());
         app.getHelperUser().openLoginRegistrationForm();
+        logger.info("openRegistrationForm");
         app.getHelperUser().fillLoginRegistrationForm(user);
+        logger.info("fillLoginRegistrationForm");
         app.getHelperUser().submitRegistration();
+        logger.info("submitRegistration");
         Assert.assertTrue(app.getHelperUser().isLogged());
         Assert.assertTrue(app.getHelperUser().isNoContactsHereDisplayed());
     }
@@ -36,6 +38,7 @@ public class RegistrationTests extends TestBase {
         User user = new User()
                 .withEmail("Kategmail.com")
                 .withPassword("kaTe1234$");
+        logger.info("Test with data: -->"+user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
@@ -48,6 +51,7 @@ public class RegistrationTests extends TestBase {
         User user = new User()
                 .withEmail("Kate@gmail.com")
                 .withPassword("kae14");
+        logger.info("Test with data: -->"+user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
@@ -60,6 +64,7 @@ public class RegistrationTests extends TestBase {
         User user = new User()
                 .withEmail("kate24@gmail.com")
                 .withPassword("kaT45#kit");
+        logger.info("Test with data: -->"+user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();

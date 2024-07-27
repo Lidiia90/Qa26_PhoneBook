@@ -30,7 +30,6 @@ public class LoginTests extends TestBase {
 
         Assert.assertTrue(app.getHelperUser().isLogged());
         logger.info("Assert check is element button 'Sign out' present");
-
     }
 
     @Test
