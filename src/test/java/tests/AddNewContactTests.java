@@ -1,5 +1,6 @@
 package tests;
 
+import manager.DataProviderContact;
 import models.Contact;
 import models.User;
 import org.testng.Assert;
@@ -17,23 +18,14 @@ public class AddNewContactTests extends TestBase {
         }
     }
 
-    @Test
+    @Test(dataProvider = "contactSuccess", dataProviderClass = DataProviderContact.class)
     public void addNewContactSuccessAllFields(Contact contact){
-        int i = new Random().nextInt(1000)+1000;
 
-//        Contact contact = Contact.builder()
-//                .Name("Kate"+i)
-//                .LastName("Serova")
-//                .Phone("12345678"+i)
-//                .email("kate" + i + "@gmail.com")
-//                .Address("Tel aviv, Israel")
-//                .description("all fields")
-//                .build();
         logger.info("Test with data: -->"+contact.toString());
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
-        app.getHelperContact().getScreen("src/test/screenshots/screen-"+i+".png");
+       // app.getHelperContact().getScreen("src/test/screenshots/screen-"+i+".png");
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
@@ -134,7 +126,7 @@ public class AddNewContactTests extends TestBase {
         Assert.assertTrue(app.getHelperContact().isAlertPresent(" Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
     }
 
-    @Test
+    @Test()
     public void addNewContactWrongEmail(){
         Contact contact = Contact.builder()
                 .Name("Lora")
