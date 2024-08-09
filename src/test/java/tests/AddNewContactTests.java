@@ -5,13 +5,14 @@ import models.Contact;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Random;
 
 public class AddNewContactTests extends TestBase {
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void preCondition(){
         if(!app.getHelperUser().isLogged()){
             app.getHelperUser().login(new User().withEmail("kate24@gmail.com").withPassword("kaT45#kit"));
@@ -32,16 +33,17 @@ public class AddNewContactTests extends TestBase {
         Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
     }
 
-    @Test
-    public void addContactSuccessReqFields(Contact contact){
+    @Test(groups = {"smoke","regress","retest"})
+    public void addContactSuccessReqFields(){
         int i = new Random().nextInt(1000)+1000;
-//        Contact contact = Contact.builder()
-//                .Name("Kate"+i)
-//                .LastName("Serova")
-//                .Phone("12345678"+i)
-//                .email("kate" + i + "@gmail.com")
-//                .Address("Tel aviv, Israel")
-//                .build();
+        Contact contact = Contact.builder()
+                .Name("Kate"+i)
+                .LastName("Serova")
+                .Phone("12345678"+i)
+                .email("kate" + i + "@gmail.com")
+                .Address("Tel aviv, Israel")
+                .build();
+
         logger.info("Test with data: -->"+contact.toString());
 
         app.getHelperContact().openContactForm();

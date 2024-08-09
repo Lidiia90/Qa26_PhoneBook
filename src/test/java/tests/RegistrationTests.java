@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class RegistrationTests extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         if (app.getHelperUser().isLogged()) {
             app.getHelperUser().logout();
@@ -46,7 +46,7 @@ public class RegistrationTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().isAlertPresent("Wrong email or password"));
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     public void registrationWrongPassword() {
         User user = new User()
                 .withEmail("Kate@gmail.com")

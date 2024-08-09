@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class ClassVariantRemoveContactsTests extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         if (!app.getHelperUser().isLogged()) {
             app.getHelperUser().login(new User().withEmail("kate24@gmail.com").withPassword("kaT45#kit"));

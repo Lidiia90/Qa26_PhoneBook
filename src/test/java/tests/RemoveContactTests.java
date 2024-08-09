@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RemoveContactTests extends TestBase {
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         if (!app.getHelperUser().isLogged()) {
             app.getHelperUser().login(new User().withEmail("kate24@gmail.com").withPassword("kaT45#kit"));
@@ -24,7 +24,7 @@ public class RemoveContactTests extends TestBase {
         int updatedContactCount = helperContact.countOfContacts();
         Assert.assertEquals(updatedContactCount, initialContactCount - 1, "The contact list size did not decrease by one after removing the first contact.");
     }
-    @Test
+    @Test(groups = {"smoke"})
     public void removeAllContacts(){
         HelperContact helperContact = app.getHelperContact();
         int initialContactCount = helperContact.countOfContacts();
