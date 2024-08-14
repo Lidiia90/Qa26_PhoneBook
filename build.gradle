@@ -54,10 +54,6 @@ task group(type: Test){
     useTestNG(){
         suites 'src/test/resources/group.xml'
     }
-    if(project.hasProperty('browser')){
-        systemProperty 'browser',
-                "${browser}"
-    }
 }
 task team(type:Test){
     useTestNG(){
