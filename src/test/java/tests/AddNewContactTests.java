@@ -34,8 +34,8 @@ public class AddNewContactTests extends TestBase {
     }
 
     @Test(groups = {"smoke","regress","retest"})
-    public void addContactSuccessReqFields(){
-        int i = new Random().nextInt(1000)+1000;
+    public void addContactSuccessReqFields() {
+        int i = (int) (System.currentTimeMillis() / 1000) % 3600;
         Contact contact = Contact.builder()
                 .Name("Kate"+i)
                 .LastName("Serova")
@@ -44,16 +44,18 @@ public class AddNewContactTests extends TestBase {
                 .Address("Tel aviv, Israel")
                 .build();
 
-        logger.info("Test with data: -->"+contact.toString());
+        logger.info("Tests run with data: --->" + contact.toString());
 
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
-        app.getHelperContact().getScreen("src/test/screenshots/screen-"+i+".png");
+//        app.getHelperContact().pause(2000);
+      //  app.getHelperContact().getScreen("src/test/screenshots");
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperContact().isContactAddedByName(contact.getName()));
         Assert.assertTrue(app.getHelperContact().isContactAddedByPhone(contact.getPhone()));
     }
+//for jenkins
 
     @Test
     public void addNewContactWrongName(){
